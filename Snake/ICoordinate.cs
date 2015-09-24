@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Snake
 {
-    interface IDirection<in TDirections>
+    interface ICoordinate<TCoordinate>
     {
-        void Move(TDirections intoDirection);
+        ICoordinate<TCoordinate> GetPrevious();
     }
 }

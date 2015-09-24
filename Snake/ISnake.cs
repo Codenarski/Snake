@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace Snake
 {
-    interface ISnake
+    interface ISnake<TDirection>
     {
 
         void Grow();
 
-        void Move();
+        void Move(TDirection newDirection);
 
     }
 }

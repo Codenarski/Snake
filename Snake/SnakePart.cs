@@ -6,17 +6,26 @@ using System.Threading.Tasks;
 
 namespace Snake
 {
-    class SnakePart<TCoordinate>: ISnakePart
+    class SnakePart<TCoordinate> : ISnakePart<TCoordinate>
     {
-        private TCoordinate _startCoordinate;
-        private Queue<ISnakePart> _queue = new Queue<ISnakePart>();
-        public SnakePart(TCoordinate startCoordinate)
+        private readonly ICoordinate<TCoordinate> _startCoordinate;        
+        public SnakePart(ICoordinate<TCoordinate> startCoordinate)
         {
             _startCoordinate = startCoordinate;
         }
+
+        public SnakePart(ISnakePart<TCoordinate> previousSnakePart)
+        {
+            _startCoordinate = previousSnakePart.Coordinate().GetPrevious();
+        }
+
         public void Move()
         {
-            throw new NotImplementedException();
+        }
+
+        ICoordinate<TCoordinate> ISnakePart<TCoordinate>.Coordinate()
+        {
+            return _startCoordinate;
         }
     }
 }
