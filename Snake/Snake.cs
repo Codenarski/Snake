@@ -9,13 +9,13 @@ namespace Snake
 {
     class Snake<TCoordinate, TDirection> : ISnake<TDirection>
     {
-        private ICoordinate<TCoordinate> _startCoordinate;
+        private readonly ICoordinate<TCoordinate> _startCoordinate;
         private TDirection _currentDirection;
         private readonly int _initialSize;
-        private readonly ISnakePartFactory<TCoordinate> _snakePartFactory;
-        private Queue<ISnakePart<TCoordinate>> _queue = new Queue<ISnakePart<TCoordinate>>();
+        private readonly ISnakePartFactory<TCoordinate, TDirection> _snakePartFactory;
+        private readonly Queue<ISnakePart<TCoordinate, TDirection>> _queue = new Queue<ISnakePart<TCoordinate, TDirection>>();
 
-        public Snake(ICoordinate<TCoordinate> startCoordinate, TDirection currentDirection, int initialSize, ISnakePartFactory<TCoordinate> snakePartFactory)
+        public Snake(ICoordinate<TCoordinate> startCoordinate, TDirection currentDirection, int initialSize, ISnakePartFactory<TCoordinate, TDirection> snakePartFactory)
         {
             _startCoordinate = startCoordinate;
             _currentDirection = currentDirection;
@@ -56,7 +56,22 @@ namespace Snake
 
         public void Move(TDirection newDirection)
         {
-            throw new NotImplementedException();
+            _currentDirection = newDirection;
+            _queue.First().Move(_currentDirection);
+            ISnakePart<TCoordinate, TDirection> previousPart = null;
+
+            foreach (var snakeTailPart in _queue)
+            {
+                
+                if (snakeTailPart == _queue.First())
+                {
+                    previousPart = _queue.First();
+                    continue;
+                }
+
+                snakeTailPart.Move(previousPart);
+                previousPart = snakeTailPart;
+            }
         }
     }
 }

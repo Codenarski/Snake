@@ -1,15 +1,15 @@
 ﻿namespace Snake
 {
-    class SnakePartFactory<TCoordinate> : ISnakePartFactory<TCoordinate>
+    class SnakePartFactory<TCoordinate, TDirection> : ISnakePartFactory<TCoordinate, TDirection>
     {
-        public ISnakePart<TCoordinate> MakeHeadPart(ICoordinate<TCoordinate> startCoordinate)
+        public ISnakePart<TCoordinate, TDirection> MakeHeadPart(ICoordinate<TCoordinate> startCoordinate)
         {
-           return new SnakePart<TCoordinate>(startCoordinate);
+           return new SnakePart<TCoordinate, TDirection>(startCoordinate);
         }
 
-        public ISnakePart<TCoordinate> MakeTailPart(ISnakePart<TCoordinate> previousSnakePart)
+        public ISnakePart<TCoordinate, TDirection> MakeTailPart(ISnakePart<TCoordinate, TDirection> previousSnakePart)
         {
-            return new SnakePart<TCoordinate>(previousSnakePart);
+           return new SnakePart<TCoordinate, TDirection>(previousSnakePart);
         }
     }
 }

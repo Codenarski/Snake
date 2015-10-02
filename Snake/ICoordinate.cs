@@ -8,6 +8,9 @@ namespace Snake
 {
     interface ICoordinate<TCoordinate>
     {
+        void ChangeTo(TCoordinate newCoordinate);
         ICoordinate<TCoordinate> GetPrevious();
+        TCoordinate Current();
+        TCoordinate Last();
     }
 }

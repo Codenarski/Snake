@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace Snake
 {
-    interface ISnakePart<TCoordinate>
+    interface ISnakePart<TCoordinate, TDirection>
     {
-        void Move();
+        void Move(TDirection newDirection);
+        void Move(ISnakePart<TCoordinate, TDirection> successorPart);
         ICoordinate<TCoordinate> Coordinate();
     }
 }

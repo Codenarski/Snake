@@ -1,8 +1,8 @@
 ﻿namespace Snake
 {
-    interface ISnakePartFactory<TCoordinate>
+    interface ISnakePartFactory<TCoordinate, TDirection>
     {
-        ISnakePart<TCoordinate> MakeHeadPart(ICoordinate<TCoordinate> startCoordinate);
-        ISnakePart<TCoordinate> MakeTailPart(ISnakePart<TCoordinate> previousSnakePart);
+        ISnakePart<TCoordinate, TDirection> MakeHeadPart(ICoordinate<TCoordinate> startCoordinate);
+        ISnakePart<TCoordinate, TDirection> MakeTailPart(ISnakePart<TCoordinate, TDirection> previousSnakePart);
     }
 }
