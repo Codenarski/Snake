@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace Snake
 {
-    interface ICoordinate<TCoordinate>
+    interface ICoordinate<TCoordinate, TDirection>
     {
         void ChangeTo(TCoordinate newCoordinate);
-        ICoordinate<TCoordinate> GetPrevious();
+        void NextByDirection(TDirection newDirection);
+        ICoordinate<TCoordinate, TDirection> GetPrevious();
         TCoordinate Current();
         TCoordinate Last();
     }

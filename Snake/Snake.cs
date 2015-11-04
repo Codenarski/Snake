@@ -9,13 +9,13 @@ namespace Snake
 {
     class Snake<TCoordinate, TDirection> : ISnake<TDirection>
     {
-        private readonly ICoordinate<TCoordinate> _startCoordinate;
+        private readonly ICoordinate<TCoordinate, TDirection> _startCoordinate;
         private TDirection _currentDirection;
         private readonly int _initialSize;
         private readonly ISnakePartFactory<TCoordinate, TDirection> _snakePartFactory;
         private readonly Queue<ISnakePart<TCoordinate, TDirection>> _queue = new Queue<ISnakePart<TCoordinate, TDirection>>();
 
-        public Snake(ICoordinate<TCoordinate> startCoordinate, TDirection currentDirection, int initialSize, ISnakePartFactory<TCoordinate, TDirection> snakePartFactory)
+        public Snake(ICoordinate<TCoordinate, TDirection> startCoordinate, TDirection currentDirection, int initialSize, ISnakePartFactory<TCoordinate, TDirection> snakePartFactory)
         {
             _startCoordinate = startCoordinate;
             _currentDirection = currentDirection;

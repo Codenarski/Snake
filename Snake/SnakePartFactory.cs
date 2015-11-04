@@ -2,7 +2,7 @@
 {
     class SnakePartFactory<TCoordinate, TDirection> : ISnakePartFactory<TCoordinate, TDirection>
     {
-        public ISnakePart<TCoordinate, TDirection> MakeHeadPart(ICoordinate<TCoordinate> startCoordinate)
+        public ISnakePart<TCoordinate, TDirection> MakeHeadPart(ICoordinate<TCoordinate, TDirection> startCoordinate)
         {
            return new SnakePart<TCoordinate, TDirection>(startCoordinate);
         }

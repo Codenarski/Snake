@@ -10,6 +10,6 @@ namespace Snake
     {
         void Move(TDirection newDirection);
         void Move(ISnakePart<TCoordinate, TDirection> successorPart);
-        ICoordinate<TCoordinate> Coordinate();
+        ICoordinate<TCoordinate, TDirection> Coordinate();
     }
 }

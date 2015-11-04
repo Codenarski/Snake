@@ -8,8 +8,8 @@ namespace Snake
 {
     class SnakePart<TCoordinate, TDirection> : ISnakePart<TCoordinate, TDirection>
     {
-        private ICoordinate<TCoordinate> _coordinate;        
-        public SnakePart(ICoordinate<TCoordinate> startCoordinate)
+        private ICoordinate<TCoordinate, TDirection> _coordinate;        
+        public SnakePart(ICoordinate<TCoordinate, TDirection> startCoordinate)
         {
             _coordinate = startCoordinate;
         }
@@ -21,7 +21,7 @@ namespace Snake
 
         public void Move(TDirection newDirection)
         {
-            throw new NotImplementedException();
+            _coordinate.NextByDirection(newDirection);
         }
 
         public void Move(ISnakePart<TCoordinate, TDirection> successorPart)
@@ -29,7 +29,7 @@ namespace Snake
             _coordinate.ChangeTo(successorPart.Coordinate().Last());
         }
 
-        ICoordinate<TCoordinate> ISnakePart<TCoordinate, TDirection>.Coordinate()
+        ICoordinate<TCoordinate, TDirection> ISnakePart<TCoordinate, TDirection>.Coordinate()
         {
             return _coordinate;
         }
