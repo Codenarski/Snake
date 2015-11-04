@@ -22,8 +22,9 @@ namespace Snake
             _initialSize = initialSize;
             _snakePartFactory = snakePartFactory;
             InitSnake();
+            
         }
-
+        
         private void InitSnake()
         {
             InitSnakeHead();
@@ -38,7 +39,7 @@ namespace Snake
 
         private void InitSnakeHead()
         {
-            var snakeHead = _snakePartFactory.MakeHeadPart(_startCoordinate);
+            var snakeHead = _snakePartFactory.MakeSnakePart(_startCoordinate);
             _queue.Enqueue(snakeHead);
         }
 
@@ -50,7 +51,8 @@ namespace Snake
 
         private void AddNewSnakeTailPart()
         {
-            var snakeTailPart = _snakePartFactory.MakeTailPart(_queue.Last());
+            var previousCoordinate = _queue.Last().Coordinate().MakePreviousByDirection();
+            var snakeTailPart = _snakePartFactory.MakeSnakePart(previousCoordinate);
             _queue.Enqueue(snakeTailPart);
         }
 

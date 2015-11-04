@@ -50,6 +50,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="2D\Coordinate2D.cs" />
+    <Compile Include="2D\Direction2D.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -65,6 +67,7 @@
     <Compile Include="Snake.cs" />
     <Compile Include="SnakePart.cs" />
     <Compile Include="SnakePartFactory.cs" />
+    <Compile Include="TCoordinate.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>

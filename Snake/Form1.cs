@@ -13,7 +13,7 @@ namespace Snake
     public partial class Form1 : Form
     {
         public Form1()
-        {
+        {                                      
             InitializeComponent();
             //Snake<Point> mySnake = new Snake<Point>(new Point(1,2));
         }

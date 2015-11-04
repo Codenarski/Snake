@@ -12,16 +12,11 @@ namespace Snake
         public SnakePart(ICoordinate<TCoordinate, TDirection> startCoordinate)
         {
             _coordinate = startCoordinate;
-        }
-
-        public SnakePart(ISnakePart<TCoordinate, TDirection> previousSnakePart)
-        {
-            _coordinate = previousSnakePart.Coordinate().GetPrevious();
-        }
+        }    
 
         public void Move(TDirection newDirection)
         {
-            _coordinate.NextByDirection(newDirection);
+            _coordinate.ChangeToNextByDirection(newDirection);
         }
 
         public void Move(ISnakePart<TCoordinate, TDirection> successorPart)
