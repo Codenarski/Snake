@@ -67,7 +67,6 @@
     <Compile Include="Snake.cs" />
     <Compile Include="SnakePart.cs" />
     <Compile Include="SnakePartFactory.cs" />
-    <Compile Include="TCoordinate.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>

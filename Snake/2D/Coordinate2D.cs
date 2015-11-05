@@ -1,54 +1,65 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using Snake._2D;
 
 namespace Snake
 {
+                      // ICoordinate<TCoordinate, TDirection>
     class Coordinate2D : ICoordinate<Point, Direction2D>
     {
         private Direction2D _direction;
         private Point _point;
-        private ICoordinate<Point, Direction2D> _last; 
+        private KeyValuePair<Point, Direction2D> _last; 
 
         public Coordinate2D(Direction2D direction,Point point)
         {
             _direction = direction;
             _point = point;
-            _last = new Coordinate2D(_direction,_point);
+            _last = new KeyValuePair<Point, Direction2D>(_point, _direction);
         }
 
-        public void ChangeTo(ICoordinate<Point, Direction2D> newCoordinate)
+        public void ChangeTo(KeyValuePair<Point, Direction2D> newCoordinate)
         {
-            _last = new Coordinate2D(_direction, _point);
-            _point = newCoordinate.CurrentCoordinate();
-            _direction = newCoordinate.CurrentDirection();            
+            _last = new KeyValuePair<Point, Direction2D>(_point, _direction);
+            _point = newCoordinate.Key;
+            _direction = newCoordinate.Value;            
         }       
 
         public void ChangeToPreviousByDirection(Direction2D direction)
         {
+            _last = new KeyValuePair<Point, Direction2D>(_point, _direction);
             _direction = direction;
+            _point = MakePreviousPointByDirection();
+        }
+
+        private Point MakePreviousPointByDirection()
+        {
+            var newPoint = new Point(_point.X, _point.Y);
             switch (_direction)
             {
                 case Direction2D.Up:
-                    _point.Y++;
+                    newPoint.Y++;
                     break;
                 case Direction2D.Down:
-                    _point.Y--;
+                    newPoint.Y--;
                     break;
                 case Direction2D.Left:
-                    _point.X++;
+                    newPoint.X++;
                     break;
                 case Direction2D.Right:
-                    _point.X--;
+                    newPoint.X--;
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(_direction), _direction, null);
             }
+            return newPoint;
         }
 
         public void ChangeToNextByDirection(Direction2D newDirection)
         {
+            _last = new KeyValuePair<Point, Direction2D>(_point, _direction);
             _direction = newDirection;
             _point = MakeNextPointByDirection();
         }
@@ -85,7 +96,7 @@ namespace Snake
 
         public ICoordinate<Point, Direction2D> MakePreviousByDirection()
         {
-            throw new NotImplementedException();
+            return new Coordinate2D(_direction, MakePreviousPointByDirection());
         }
 
         public Point CurrentCoordinate()
@@ -98,7 +109,7 @@ namespace Snake
             return _direction;
         }
 
-        ICoordinate<Point, Direction2D> ICoordinate<Point, Direction2D>.Last()
+        public KeyValuePair<Point, Direction2D> Last()
         {
             return _last;
         }

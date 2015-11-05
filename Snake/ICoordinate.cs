@@ -10,7 +10,7 @@ namespace Snake
     interface ICoordinate<TCoordinate, TDirection>
     {
 
-        void ChangeTo(ICoordinate<TCoordinate, TDirection> newCoordinate);
+        void ChangeTo(KeyValuePair<TCoordinate, TDirection> newCoordinate);
         void ChangeToNextByDirection(TDirection newDirection);
         void ChangeToPreviousByDirection(Direction2D direction);
 
@@ -21,7 +21,7 @@ namespace Snake
         TCoordinate CurrentCoordinate();
         TDirection CurrentDirection();
 
-        ICoordinate<TCoordinate, TDirection> Last();
+        KeyValuePair<TCoordinate, TDirection> Last();
 
     }
 }
