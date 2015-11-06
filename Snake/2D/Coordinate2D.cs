@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Drawing.Drawing2D;
-using Snake._2D;
 
-namespace Snake
+namespace Snake._2D
 {
                       // ICoordinate<TCoordinate, TDirection>
     class Coordinate2D : ICoordinate<Point, Direction2D>

@@ -1,4 +1,4 @@
-﻿namespace Snake
+﻿namespace Snake._2D
 {
     partial class Form1
     {
@@ -51,7 +51,7 @@
             this.ClientSize = new System.Drawing.Size(525, 525);
             this.Controls.Add(this.pictureBox1);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "2D Snake";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
